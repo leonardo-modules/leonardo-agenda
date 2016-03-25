@@ -1,0 +1,5 @@
+include MANIFEST.in
+include README.rst
+recursive-include leonardo_agenda/static *
+recursive-include leonardo_agenda/locale *
+recursive-include leonardo_agenda/templates *

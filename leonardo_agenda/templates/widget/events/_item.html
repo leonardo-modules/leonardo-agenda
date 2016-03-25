@@ -1,0 +1,54 @@
+
+{% load i18n %}
+{% load thumbnail %}
+{% load leonardo_tags %}
+
+<div class="append-bottom">
+<a class="ausklapp h2" href="{{ item.get_absolute_url }}" id="a-{{ item.slug }}" name="a{{ item.name }}"><span>{{ item.start_time|date:"j. N" }}: {{ item.name }}</span></a>
+<div class="ausklapp_content event span-15 last prepend-top">
+    <div class="event-text {% if item.picture %}span-11{% else %}span-15 last{% endif %}">
+        <p class="byline">{{ item.start_time|date:"SHORT_DATE_FORMAT" }}</p>
+            {{ item.description|safe }}
+    </div>          
+    {% if item.picture %}
+    {% thumbnail image.file size format="PNG" as thumb %}
+    <div class="event-image span-4 last">
+       <a href="{{ item.get_absolute_url }}" class="event-image image">
+        <img src="{{ thumb.url }}" alt="" />
+       </a>
+    </div>
+    {% endthumbnail %}
+    {% endif %}
+</div>
+</div>
+
+{% comment %}
+<script>
+SQ.add(function(){
+    $('a.ausklapp').click(function() {
+        $(this).children('span').toggleClass('open');
+        $(this).next().slideToggle(500, function(){
+            $.scrollTo($(this), 500);
+            });
+        return false;
+    }).next().hide();
+    $('a.ausklapp:first').children('span').toggleClass('open');
+    $('a.ausklapp:first').next().slideDown();
+        //thaths the hash-shizzle
+    if ( window.location.hash != '') {
+        var hash=window.location.hash.substr(1)
+    //get hash, scroll to position
+        $('#a'+hash).children('span').addClass('open');
+        $('#a'+hash).next().slideDown(500,function(){
+            $.scrollTo($(this), 500);
+            });
+    }
+    $('.event-image').fancybox();
+
+});
+</script>
+
+Aufklapp JS:
+Needs jQuery.scrollTo for scrollTo.
+
+{% endcomment %}

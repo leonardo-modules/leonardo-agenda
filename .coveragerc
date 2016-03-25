@@ -1,0 +1,5 @@
+[run]
+source = leonardo_agenda
+omit =
+    *migrations*
+    leonardo_agenda/__init__.py
