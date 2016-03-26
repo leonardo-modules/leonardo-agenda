@@ -32,8 +32,10 @@ class Config(AppConfig):
 
         from ckeditor_uploader.widgets import CKEditorUploadingWidget
         from elephantagenda.backends.agenda import models
-        models.EventAdminForm._meta.widgets[
-            'description'] = CKEditorUploadingWidget()
+        models.EventAdminForm._meta.widgets.update({
+            'description': CKEditorUploadingWidget(),
+            'short_description': CKEditorUploadingWidget()
+        })
 
         try:
             from ckeditor_uploader.widgets import CKEditorUploadingWidget

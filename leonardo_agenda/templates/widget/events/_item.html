@@ -8,7 +8,7 @@
 <div class="ausklapp_content event span-15 last prepend-top">
     <div class="event-text {% if item.picture %}span-11{% else %}span-15 last{% endif %}">
         <p class="byline">{{ item.start_time|date:"SHORT_DATE_FORMAT" }}</p>
-            {{ item.description|safe }}
+            {{ item.translation.short_description|default:item.short_description|safe }}
     </div>          
     {% if item.picture %}
     {% thumbnail image.file size format="PNG" as thumb %}

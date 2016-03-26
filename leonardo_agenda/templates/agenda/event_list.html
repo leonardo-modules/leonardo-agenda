@@ -1,0 +1,23 @@
+{% load thumbnail i18n %}
+<table class="event-list">
+    <thead>
+        <tr>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "Location" %}</th>
+            <th>{% trans "Start" %}</th>
+            <th>{% trans "End" %}</th>
+            <th>{% trans "Short Desription" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for object in object_list %}
+        <tr>
+            <td><a href="{{ object.get_absolute_url }}">{{ object.translation.name|default:object.name }}</a></td>
+            <td>{{ object.address }}{% if object.address and object.country %}, {% endif %}{{ object.get_country_display }}</td>
+            <td>{{ object.start_date|date:"j. F Y" }} {{ object.start_time|time:"H:i" }}</td>
+            <td>{{ object.end_date|date:"j. F Y" }} {{ object.end_time|time:"H:i" }}</td>
+            <td>{{ object.translation.short_description|default:object.short_description }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
