@@ -30,18 +30,12 @@ class Config(AppConfig):
 
     def ready(self):
 
-        from ckeditor_uploader.widgets import CKEditorUploadingWidget
-        from elephantagenda.backends.agenda import models
-        models.EventAdminForm._meta.widgets.update({
-            'description': CKEditorUploadingWidget(),
-            'short_description': CKEditorUploadingWidget()
-        })
-
         try:
-            from ckeditor_uploader.widgets import CKEditorUploadingWidget
+            from leonardo.utils import get_htmltext_widget
             from elephantagenda.backends.agenda import models
-            models.EventAdminForm._meta.widgets[
-                'description'] = CKEditorUploadingWidget()
-
-        except Exception as e:
-            raise e
+            models.EventAdminForm._meta.widgets.update({
+                'description': get_htmltext_widget,
+                'short_description': get_htmltext_widget
+            })
+        except:
+            pass
