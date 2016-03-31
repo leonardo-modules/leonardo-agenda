@@ -34,8 +34,8 @@ class Config(AppConfig):
             from leonardo.utils import get_htmltext_widget
             from elephantagenda.backends.agenda import models
             models.EventAdminForm._meta.widgets.update({
-                'description': get_htmltext_widget,
-                'short_description': get_htmltext_widget
+                'description': get_htmltext_widget(),
+                'short_description': get_htmltext_widget()
             })
         except:
             pass
