@@ -1,4 +1,6 @@
+{% extends widget.get_base_template %}
 {% load thumbnail i18n %}
+{% block content %}
 <table class="event-list">
     <thead>
         <tr>
@@ -21,3 +23,4 @@
     {% endfor %}
     </tbody>
 </table>
+{% endblock content %}

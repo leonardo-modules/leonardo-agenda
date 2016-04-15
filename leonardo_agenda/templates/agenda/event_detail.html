@@ -1,0 +1,18 @@
+{% extends widget.get_base_template %}
+
+{% load thumbnail i18n applicationcontent_tags %}
+
+{% block cotnent %}
+{% fragment request "title" prepend %}{{ object.translation.name|default:object.name }} - {% endfragment %}
+
+<div class="event">
+    {% if object.picture %}
+        <img src="{{ object.picture.url }}" alt="" style="float:right" />
+    {% endif %}
+
+    {{ object.start_time }}{% if object.end_time %}, {{ object.end_time }}{% endif %}<br />
+    <h2><a href="{{ object.get_absolute_url }}">{{ object.translation.name|default:object.name }}</a></h2>
+
+    {{ object.translation.description|default:object.description|safe }}
+</div>
+{% endblock cotnent %}
