@@ -2,7 +2,8 @@
 
 {% load thumbnail i18n applicationcontent_tags %}
 
-{% block cotnent %}
+{% block content %}
+<div class="m-t-2">
 {% fragment request "title" prepend %}{{ object.translation.name|default:object.name }} - {% endfragment %}
 
 <div class="event">
@@ -15,4 +16,5 @@
 
     {{ object.translation.description|default:object.description|safe }}
 </div>
-{% endblock cotnent %}
+</div>
+{% endblock content %}
