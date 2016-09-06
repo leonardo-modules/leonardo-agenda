@@ -1,3 +1,4 @@
 -r default.txt
 coverage>=3.7.1
 coveralls>=0.4.2
+-e git+https://github.com/feinheit/feincms-elephantagenda.git#egg=elephantagenda
