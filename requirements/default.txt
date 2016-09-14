@@ -1,0 +1,1 @@
+-e git+https://github.com/feinheit/feincms-elephantagenda.git#egg=elephantagenda

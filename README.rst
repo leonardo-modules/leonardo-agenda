@@ -15,6 +15,14 @@ Installation
 
     pip install leonardo-agenda
 
+You can set migrations redirect
+
+.. code-block:: python
+
+    MIGRATION_MODULES = {
+        'elephantagenda': 'leonardo_agenda.migrations',
+    }
+
 Read More
 =========
 
