@@ -1,0 +1,63 @@
+{% extends widget.get_base_template %}
+{% load i18n thumbnail %}
+
+{% block content %}
+<style type="text/css">
+.bubble {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 16px;
+    border: 1px solid #666;
+    border-radius: 3px;
+    background-color: #f7f7f7;
+    z-index: 9999;
+    display: none;
+}
+</style>
+<script>
+
+    $(document).ready(function() {
+        
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay,'
+            },
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            locale: "cs",
+            firstDay: 1,
+            eventMouseover: function (calEvent, jsEvent, view) {
+
+                $(".bubble").html(
+                        "<p>Název události: <strong>" + calEvent.title + "</strong></p>" +
+                        "<p>Začátek: " + calEvent.start.format("DD.MM. YYYY") + "</p>" +
+                        "<p>Konec: " + calEvent.end.format("DD.MM. YYYY") + "</p>"
+                        );
+                $(".bubble").css({ top: jsEvent.pageY - 200, left: jsEvent.pageX - 650}).show(200);
+            },
+            eventMouseout: function (calEvent, jsEvent, view) {
+                $(".bubble").hide();
+            },
+            eventLimit: true, // allow "more" link when too many events
+            events: [
+            {% for item in widget.items %}
+                {
+                    title: '{{ item.translation.name|default:item.name }}',
+                    start: '{{ item.start_time.year }}-{{ item.start_time|date:"m-d" }}T{{ item.start_time|time:"H:i" }}',
+                    end: '{{ item.end_time.year }}-{{ item.end_time|date:"m-d" }}T{{ item.end_time|time:"H:i" }}',
+                    description: 'This is a cool event',
+                    url: '{{ item.get_absolute_url }}',
+                },
+            {% endfor %}
+            ]
+        });
+    });
+
+</script>
+<div class="bubble"></div>
+<div id='calendar'></div>
+
+{% endblock %}

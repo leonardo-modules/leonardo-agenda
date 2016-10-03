@@ -18,7 +18,7 @@
             <td>{{ object.address }}{% if object.address and object.country %}, {% endif %}{{ object.get_country_display }}</td>
             <td>{{ object.start_date|date:"j. F Y" }} {{ object.start_time|time:"H:i" }}</td>
             <td>{{ object.end_date|date:"j. F Y" }} {{ object.end_time|time:"H:i" }}</td>
-            <td>{{ object.translation.short_description|default:object.short_description }}</td>
+            <td>{{ object.translation.short_description|default:object.short_description|safe }}</td>
         </tr>
     {% endfor %}
     </tbody>
