@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 default_app_config = 'leonardo_agenda.Config'
 
+
 LEONARDO_OPTGROUP = 'Events'
 
 LEONARDO_APPS = [
@@ -22,6 +23,16 @@ LEONARDO_PLUGINS = [
 LEONARDO_ABSOLUTE_URL_OVERRIDES = {
     'agenda.event': 'leonardo_agenda.overrides.event'
 }
+
+LEONARDO_CSS_FILES = [
+    'css/fullcalendar.css',
+]
+
+LEONARDO_JS_FILES = [
+    'js/moment.min.js',
+    'js/fullcalendar.min.js',
+    'js/locale-all.js'
+]
 
 
 class Config(AppConfig):
