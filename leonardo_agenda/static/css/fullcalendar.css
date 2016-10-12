@@ -682,9 +682,13 @@ a.fc-more:hover {
 	text-align: left;
 }
 
+.fc-other-month {
+	opacity: 0.45;
+}
+
 .fc-day-number.fc-other-month {
 	opacity: 0.3;
-        -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+        -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)"
 	/* opacity with small font can sometimes look too faded
 	   might want to set the 'color' property instead
 	   making day-numbers bold also fixes the problem */
