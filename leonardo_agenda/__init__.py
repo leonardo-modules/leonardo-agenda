@@ -34,6 +34,11 @@ LEONARDO_JS_FILES = [
     'js/locale-all.js'
 ]
 
+LEONARDO_REQUIREMENTS = [
+    'https://github.com/feinheit/feincms-elephantagenda/archive/master.zip'
+    '#elephantagenda==1.0.0'
+]
+
 
 class Config(AppConfig):
     name = 'leonardo_agenda'
