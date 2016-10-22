@@ -35,7 +35,7 @@ LEONARDO_JS_FILES = [
 ]
 
 LEONARDO_REQUIREMENTS = [
-    'https://github.com/feinheit/feincms-elephantagenda/archive/master.zip'
+    'https://github.com/michaelkuty/feincms-elephantagenda/archive/master.zip'
     '#elephantagenda==1.0.0'
 ]
 
