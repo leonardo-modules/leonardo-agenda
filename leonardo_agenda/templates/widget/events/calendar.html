@@ -44,14 +44,12 @@
             eventLimit: true, // allow "more" link when too many events
             events: [
             {% for item in widget.items %}
-            {% if item.show_in_calendar == True %}
                 {
                     title: '{{ item.translation.name|default:item.name }}',
                     start: '{{ item.start_time.year }}-{{ item.start_time|date:"m-d" }}T{{ item.start_time|time:"H:i" }}',
                     end: '{{ item.end_time.year }}-{{ item.end_time|date:"m-d" }}T{{ item.end_time|time:"H:i" }}',
                     url: '{{ item.get_absolute_url }}',
                 },
-            {% endif %}
             {% endfor %}
             ]
         });
