@@ -32,11 +32,11 @@
             eventMouseover: function (calEvent, jsEvent, view) {
 
                 $(".bubble").html(
-                        "<p>Název události: <strong>" + calEvent.title + "</strong></p>" +
-                        "<p>Začátek: " + calEvent.start.format("DD.MM. YYYY") + "</p>" +
-                        "<p>Konec: " + calEvent.end.format("DD.MM. YYYY") + "</p>"
+                        "<p>{% trans 'Event' %}: <strong>" + calEvent.title + "</strong></p>" +
+                        "<p>{% trans 'Start' %}: " + calEvent.start.format("DD.MM. YYYY") + "</p>" +
+                        "<p>{% trans 'End' %}: " + calEvent.end.format("DD.MM. YYYY") + "</p>"
                         );
-                $(".bubble").css({ top: jsEvent.pageY - 200, left: jsEvent.pageX - 650}).show(200);
+                $(".bubble").css({ top: jsEvent.pageY + 20, left: jsEvent.pageX + 20}).show(200);
             },
             eventMouseout: function (calEvent, jsEvent, view) {
                 $(".bubble").hide();
@@ -44,20 +44,20 @@
             eventLimit: true, // allow "more" link when too many events
             events: [
             {% for item in widget.items %}
+            {% if item.show_in_calendar == True %}
                 {
                     title: '{{ item.translation.name|default:item.name }}',
                     start: '{{ item.start_time.year }}-{{ item.start_time|date:"m-d" }}T{{ item.start_time|time:"H:i" }}',
                     end: '{{ item.end_time.year }}-{{ item.end_time|date:"m-d" }}T{{ item.end_time|time:"H:i" }}',
-                    description: 'This is a cool event',
                     url: '{{ item.get_absolute_url }}',
                 },
+            {% endif %}
             {% endfor %}
             ]
         });
     });
 
 </script>
-<div class="bubble"></div>
 <div id='calendar'></div>
 
 {% endblock %}

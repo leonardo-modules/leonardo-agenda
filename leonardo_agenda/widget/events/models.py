@@ -2,7 +2,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from leonardo.module.web.models import ListWidget
-
+import datetime
 from elephantagenda.models import Category, Event, Venue
 
 
@@ -23,9 +23,11 @@ class EventsWidget(ListWidget):
     def get_items(self):
 
         if self.filter == 'u':
-            events = Event.objects.upcoming().order_by('start_time')
+            events = Event.objects.filter(
+                start_time__gte=datetime.datetime.now).order_by('-start_time')
         elif self.filter == 'p':
-            events = Event.objects.past().order_by('-start_time')
+            events = Event.objects.filter(
+                start_time__lte=datetime.datetime.now).order_by('start_time')
         else:
             events = Event.objects.all().order_by('start_time')
 
