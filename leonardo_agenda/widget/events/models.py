@@ -24,7 +24,7 @@ class EventsWidget(ListWidget):
 
         if self.filter == 'u':
             events = Event.objects.filter(
-                start_time__gte=datetime.datetime.now).order_by('-start_time')
+                start_time__gte=datetime.datetime.now).order_by('start_time')
         elif self.filter == 'p':
             events = Event.objects.filter(
                 start_time__lte=datetime.datetime.now).order_by('start_time')
