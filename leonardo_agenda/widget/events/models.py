@@ -29,7 +29,7 @@ class EventsWidget(ListWidget):
             events = Event.objects.filter(
                 start_time__lte=datetime.datetime.now).order_by('start_time')
         else:
-            events = Event.objects.all().order_by('start_time')
+            events = Event.objects.all().order_by('-start_time')
 
         if hasattr(self.parent, 'language'):
             events = events.filter(language=self.parent.language)
